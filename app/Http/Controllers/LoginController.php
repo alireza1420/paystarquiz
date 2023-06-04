@@ -11,6 +11,10 @@ class LoginController extends Controller
 {
     //
     public function showLoginForm(){
+        if(Auth::check()==false){
+            $message="You are already loged in !";
+            return redirect('/')->with('message', $message);
+        }
         return view('login');
     }
 
@@ -26,7 +30,7 @@ class LoginController extends Controller
 
         if(auth()->attempt($request->only('email','password'))){
             $cookie=cookie('signup_completed',true,60);
-            return redirect('/public')->withCookie($cookie);
+            return redirect('/')->withCookie($cookie);
         }
 
         //Failed Authentication

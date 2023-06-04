@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Http;
 use Darryldecode\Cart\CartCondition;
-
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -16,7 +16,11 @@ class CartController extends Controller
     {
         $cartItems = \Cart::class::getContent();
         // dd($cartItems);
+        if(Auth::attempt()!=false){
         return view('cart', compact('cartItems'));
+        }else{
+            return view('signup');
+        }
     }
 
 

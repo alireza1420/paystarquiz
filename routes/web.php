@@ -20,7 +20,7 @@ use App\Http\Controllers\SignupController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 //Login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
